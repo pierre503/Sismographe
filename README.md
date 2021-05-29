@@ -11,7 +11,7 @@ Sismographe nécessite simplement d'avoir un navigateur moderne (Chrome, Firefox
 
 Une fois lancé, l'affichage de la Figure ci-dessous apparaîtra.
 
-<img src="rapport/Image/imp.png" alt="Affichage au lancement de Sismographe" />
+<img src="Image/imp.png" alt="Affichage au lancement de Sismographe" />
 
 
 Dans cet affichage nous pouvons voir les éléments suivants:
@@ -42,7 +42,7 @@ Ceux-ci seront appliqués seulement si l'utilisateur appuie sur le bouton ``chan
 Si le bouton ``change" n'est pas appuyé avant la désélection de l'état (si l'utilisateur appuie sur une partie quelconque du graphe) toutes les modifcations seront perdues.
 
 
-<img src="rapport/Image/select.png" alt="Etat non sélectionné à gauche, état sélectionné au milieu et menu de modification d'un état à droite." />
+<img src="Image/select.png" alt="Etat non sélectionné à gauche, état sélectionné au milieu et menu de modification d'un état à droite." />
 
 L'utilisateur pourra aussi définir un contrat pour un état à l'aide de l'onglet prévu à cet effet visible dans l'exemple de la Figure ci-dessus.
 Dans l'onglet "contract" l'utilisateur pourra ajouter ou supprimer des préconditions, postconditions ou invariants.
@@ -52,14 +52,14 @@ Les conditions définies dans le contrat n'apparaîteront pas visuellement dans 
 
 Si l'utilisateur sélectionne un état simple/composé/orthogonal il pourra alors définir/supprimer des transtions internes grâce à l'onglet prévu à cet effet, comme on peut le voir à la Figure ci-dessous.
 
-<img src="rapport/Image/contrat.png" alt="Définition de contrat" style="display:inline-block;"/><img src="rapport/Image/interTran.png" alt="définition de transitions internes" style="display:inline-block;"/>
+<img src="Image/contrat.png" alt="Définition de contrat" style="display:inline-block;"/><img src="rapport/Image/interTran.png" alt="définition de transitions internes" style="display:inline-block;"/>
 
 
 
 Si l'utilisateur souhaite ajouter plusieurs actions d'entrée/de sortie, il doit faire un retour à la ligne entre chaque action d'entrée/de sortie.
 
 
-<img src="rapport/Image/entree.png" alt="Plusieurs sorties et une entrée sur un état" />
+<img src="Image/entree.png" alt="Plusieurs sorties et une entrée sur un état" />
 
 
 Si un état est sélectionné, celui-ci peut-être redimensionné avec les points d'ancrage se trouvant dans les coins de l'outil de sélection (entouré en jaune dans la Figure ci-dessous).
@@ -77,7 +77,7 @@ Pour créer une transition entre deux états, l'utilisateur doit:
 3. sélectionner l'état cible.
 Une transition sera alors créée entre les deux états.
 
-<img src="rapport/Image/action.png" alt="Etat sélectionné et état composé. Les points d'ancrage permettant le redimentionnement de l'état sélectionné sont entourés en jaune." />
+<img src="Image/action.png" alt="Etat sélectionné et état composé. Les points d'ancrage permettant le redimentionnement de l'état sélectionné sont entourés en jaune." />
 
 
 Une transition selectionnée par l'utilisateur, affiche différents outils pour pouvoir la modifier visuellement ou la supprimer (voir Figure ci-dessous).
@@ -87,10 +87,10 @@ La sélection d'un lien fera apparaître un menu permettant de modifier l'évén
 Comme pour les états, l'utilisateur devra valider les modifications avant de déselectionner la transition, sous peine de perdre les changements effectués.  
 
 
-<img src="rapport/Image/transi.png" alt="Une transition sélectionnée à gauche. Celle-ci contient deux points de passage. Et le menu de modification d'une transition à droite ." />
+<img src="Image/transi.png" alt="Une transition sélectionnée à gauche. Celle-ci contient deux points de passage. Et le menu de modification d'une transition à droite ." />
 
 Pour terminer, si une ou plusieurs erreurs sont détectées, l'état créant le ou les erreurs sera alors entouré d'un halo orange et il sera accompagné d'un triangle (voir exemple Figure ci-dessous).
 Si le curseur est déplacé sur le triangle, un message contenant les différents problèmes créés par l'état apparaîtra.
 Les erreurs détectées dans l'ensemble du graphe seront listées dans le cadre prévu à cet effet (le cadre 6 de la première Figure)
 
-<img src="rapport/Image/error.png" alt="Etat à l'origine de deux erreurs: nom dupliqué et multiple root." />
+<img src="Image/error.png" alt="Etat à l'origine de deux erreurs: nom dupliqué et multiple root." />
