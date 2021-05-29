@@ -1,0 +1,75 @@
+statechart:
+  name: Elevator
+  preamble: |
+    current = 0
+    destination = 0
+    doors_open = True
+  root state:
+    name: active
+    contract:
+      - before: current == 0
+      - always: current >= 0  
+      - always: destination >= 0  
+    parallel states:
+      - name: movingElevator
+        initial: doorsOpen
+        states:
+          - name: doorsOpen
+            transitions:
+              - target: doorsClosed
+                guard: destination != current
+                action: doors_open = False
+              - target: doorsClosed
+                guard: after(10) and current > 0
+                action: |
+                  destination = 0
+                  doors_open = False
+                contract:
+                  - before: current > 0
+                  - after: destination == 0
+          - name: doorsClosed
+            transitions:
+              - target: movingUp
+                guard: destination > current
+              - target: movingDown
+                guard: destination < current and destination >= 0
+          - name: moving
+            contract:
+              - always: not doors_open  
+              - before: destination != current  
+              - after: destination == current  
+              - after: current != __old__.current  
+            transitions:
+              - target: doorsOpen
+                guard: destination == current
+                action: doors_open = True
+                contract:
+                  - before: not doors_open  
+                  - after: doors_open  
+            states:
+              - name: movingUp
+                on entry: current = current + 1
+                contract:
+                  - before: current < destination  
+                  - always: current <= destination 
+                  - after: current > __old__.current  
+                transitions:
+                  - target: movingUp
+                    guard: destination > current
+              - name: movingDown
+                contract:
+                  - before: current > destination  
+                  - always: current >= destination  
+                  - after: current < __old__.current  
+                on entry: current = current - 1
+                transitions:
+                  - target: movingDown
+                    guard: destination < current
+      - name: floorListener
+        initial: floorSelecting
+        states:
+          - name: floorSelecting
+            transitions:
+              - target: floorSelecting
+                event: floorSelected
+                action: destination = event.floor

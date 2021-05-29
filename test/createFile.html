@@ -1,0 +1,162 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Generateur</title>
+    </head>
+    <body>
+        <div style="display:none">
+            <div id="paper"></div>
+
+            <div class="left">
+
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Attributes</div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="form-group">
+                                <label for="ox" title="Position of zero x-coordinate of the paper in pixels">Origin x</label>
+                                <input id="ox" name="ox" type="range" value="0" min="-1000" max="1000" autocomplete="off"/>
+                                <output for="ox">0</output>
+                            </div>
+                            <div class="form-group">
+                                <label for="oy" title="Position of zero y-coordinate of the paper in pixels">Origin y</label>
+                                <input id="oy" type="range" value="0" min="-1000" max="1000" autocomplete="off"/>
+                                <output for="oy">0</output>
+                            </div>
+                            <div class="form-group">
+                                <label for="sx" title="Scale factor for x axis">Scale x</label>
+                                <input id="sx" type="range" value="1.00" step="0.1" min="0.1" max="3" autocomplete="off"/>
+                                <output for="sx">1.00</output>
+                            </div>
+                            <div class="form-group">
+                                <label for="sy" title="Scale factor for y axis">Scale y</label>
+                                <input id="sy" type="range" value="1.00" step="0.1" min="0.1" max="3" autocomplete="off"/>
+                                <output for="sy">1.00</output>
+                            </div>
+                            <div class="form-group">
+                                <label for="width" title="Width of the paper in pixels">Width</label>
+                                <input id="width" class="form-control" type="range" value="800" min="100" max="1200" autocomplete="off"/>
+                                <output for="width">800</output>
+                            </div>
+                            <div class="form-group">
+                                <label for="height" title="Height of the paper in pixels">Height</label>
+                                <input id="height" class="form-control" type="range" value="600" min="100" max="900" autocomplete="off"/>
+                                <output for="height">600</output>
+                            </div>
+                            <div class="form-group">
+                                <label for="grid" title="Size of the grid in pixels">Grid size</label>
+                                <input id="grid" class="range" type="range" value="10" min="1" max="50" autocomplete="off"/>
+                                <output for="grid">10</output>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="Fit-to-content" class="panel panel-primary">
+                    <div class="panel-heading">Statechart properties</div>
+                    <div class="panel-body">
+                        <p><label>Name</label><textarea id='Statechart-Name' cols='33' rows='1'>New statechart</textarea></p>
+                        <p><label>Description</label><textarea id='Statechart-Description' cols='33' rows='8'></textarea></p>
+                        <p><label>Preamble</label><textarea id='Statechart-Preamble' cols='33' rows='6'></textarea></p>
+                    </div>
+                </div>
+
+
+                <div id="File_properties" class="panel panel-primary">
+                    <div class="panel-heading">File properties</div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <button class="button-adding" id="Save">Save</button>
+                        </div>
+                        <input type="file" id="loadElem" accept=".json" style="display:none" onchange="load(this.files)">
+                        <div class="form-group">
+                            <button class="button-adding" id="Load">Load</button>
+                        </div>
+                        <div class="form-group">
+                            <button class="button-adding" id="toYaml">Export to Yaml</button>
+                        </div>
+                        <input type="file" id="loadYaml" style="display:none" onchange="fromYaml(this.files)">
+                        <div class="form-group">
+                            <button class="button-adding" id="importYaml">Import from Yaml</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="center">
+                <div id="paper"></div>
+                <div id="ListError" class="panel panel-primary">
+                    <div class="panel-heading">List of error</div>
+                    <div class="panel-body">
+                        <div class="form-group"><p id="errorCount">There are 0 error left</p></div>
+                        <div class="errorBox" id="textError">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="right">
+
+                <div id="Create_element" class="panel panel-primary">
+                    <div class="panel-heading">Create new element</div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <button class="button-adding" id="States">State</button>
+                        </div>
+                        <div class="form-group">
+                            <button class="button-adding" id="Composite_States">Composite state</button>
+                        </div>
+                        <div class="form-group">
+                            <button class="button-adding" id="Orthogonal_States">Orthogonal state</button>
+                        </div>
+                        <div class="form-group">
+                            <button class="button-adding" id="Initial_State">Initial state</button>
+                        </div>
+                        <div class="form-group">
+                            <button class="button-adding" id="End_State">Final state</button>
+                        </div>
+                        <div class="form-group">
+                            <button class="button-adding" id="Historical_State">Shallow history state</button>
+                        </div>
+                        <div class="form-group">
+                            <button class="button-adding" id="Deep_Historical_State">Deep history state</button>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="panel panel-primary" id="element_Property_panel">
+                    <div class="panel-heading">Change element property</div>
+                </div>
+            </div>
+        </div>
+        <div id ="hello">
+        <input type="file" id="loadYamlTest" style="display:none" onchange="toTransformfromYaml(this.files)">
+                        <div class="form-group">
+                            <button class="button-adding" id="importYamlTest">Selectionner le fichier "Elevator.yaml" dans le dossier results</button>
+                        </div>
+        </div>
+
+        <!-- JS-Yaml Dependencies -->
+        <script src="../node_modules/esprima/dist/esprima.js"></script>
+        <script src="../node_modules/js-yaml/dist/js-yaml.min.js"></script>
+
+        <!-- JointJs Dependencies -->
+        <script src="../node_modules/jquery/dist/jquery.js"></script>
+        <script src="../node_modules/lodash/lodash.js"></script>
+        <script src="../node_modules/backbone/backbone.js"></script>
+        <script src="../node_modules/jointjs/dist/joint.js"></script>
+
+        <!-- Sismographe -->
+        <script type="text/javascript" src="../JS/Paper.js"></script>
+        <script type="text/javascript" src="../JS/Shape.js"></script>
+        <script type="text/javascript" src="../JS/Menu.js"></script>
+        <script type="text/javascript" src="../JS/Save-Load.js"></script>
+
+
+
+        <script src="generatorFile.js"></script>
+
+    </body>
+</html>

@@ -1,0 +1,74 @@
+statechart:
+  name: updateElevator
+  description: une description simple
+  preamble: |
+    current = 0 
+    destination = 0 
+    doors_open = True
+  root state:
+    name: active
+    contract:
+      - before: current == 0
+      - always: destination >= 0
+      - always: current >= 0
+    parallel states:
+      - name: floorListener
+        initial: floorSelecting
+        states:
+          - name: floorSelecting
+            transitions:
+              - target: floorSelecting
+                event: floorSelected
+                action: destination = event.floor
+      - name: movingElevator
+        initial: doorsOpen
+        states:
+          - name: doorsClosed
+            transitions:
+              - target: movingUP
+                guard: destination > current
+              - target: movingDOWN
+                guard: destination < current and destination >= 0
+          - name: doorsOpen
+            transitions:
+              - target: doorsClosed
+                guard: destination != current
+                action: doors_open = False
+              - target: doorsClosed
+                guard: after(10) and current > 0
+                action: destination = 0
+                contract:
+                  - before: current > 0
+                  - after: destination == 0
+          - name: moving
+            contract:
+              - before: destination != current
+              - always: not doors_open
+              - after: destination == current
+              - after: current != __old__.current
+            transitions:
+              - target: doorsOpen
+                guard: destination == current
+                action: doors_open = True
+                contract:
+                  - before: not doors_open
+                  - after: doors_open
+            states:
+              - name: movingUP
+                contract:
+                  - before: current < destination
+                  - always: current <= destination
+                  - after: current > __old__.current
+                on entry: current = current + 2 - 1
+                transitions:
+                  - target: movingUP
+                    guard: destination > current
+              - name: movingDOWN
+                contract:
+                  - before: current > destination
+                  - always: current >= destination
+                  - after: current < __old__.current
+                on entry: current = current - 1
+                transitions:
+                  - target: movingDOWN
+                    guard: destination < current
