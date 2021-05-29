@@ -52,7 +52,7 @@ Les conditions définies dans le contrat n'apparaîteront pas visuellement dans 
 
 Si l'utilisateur sélectionne un état simple/composé/orthogonal il pourra alors définir/supprimer des transtions internes grâce à l'onglet prévu à cet effet, comme on peut le voir à la Figure ci-dessous.
 
-<img src="Image/contrat.png" alt="Définition de contrat" style="display:inline-block;"/><img src="rapport/Image/interTran.png" alt="définition de transitions internes" style="display:inline-block;"/>
+<img src="Image/contrat.png" alt="Définition de contrat" style="display:inline-block;"/><img src="Image/interTran.png" alt="définition de transitions internes" style="display:inline-block;"/>
 
 
 
