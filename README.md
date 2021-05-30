@@ -94,3 +94,6 @@ Si le curseur est déplacé sur le triangle, un message contenant les différent
 Les erreurs détectées dans l'ensemble du graphe seront listées dans le cadre prévu à cet effet (le cadre 6 de la première Figure)
 
 <img src="Image/error.png" alt="Etat à l'origine de deux erreurs: nom dupliqué et multiple root." />
+
+## Tester l'application maintenant?
+Vous pouvez directement tester l'application sur cette page: https://pierre503.github.io/Sismographe/
