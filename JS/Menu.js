@@ -80,7 +80,7 @@ var getInternalTrans = function () {
             let text = actualChild.childNodes[j].childNodes[1];
             actualTrans.push(text.value);
             if (j < 2) {
-                res += text.value.join(";");
+                res += text.value;
             }
         }
         if (res !== "") {

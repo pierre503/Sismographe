@@ -685,10 +685,10 @@ joint.shapes.Statechart.StateInterface.define('Statechart.States', {
             if (element[0] !== "") {
                 text += element[0];
             }
-            text += " / ";
             if (element[1] !== "") {
                 text += "["+element[1]+"]";
             }
+            text += " / ";
             if (element[2] !== "") {
                 var actions = element[2].split("\n").filter( function(val){return val !== '';} );
                 text += actions.join(';');
