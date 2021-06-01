@@ -295,7 +295,7 @@ var getYaml = function () {
         let rootState = stateToYaml(root[0]);
         result['root state'] = rootState;
     }
-    return jsyaml.safeDump({'statechart': result});
+    return jsyaml.dump({'statechart': result},{lineWidth: -1});
 };
 
 var statechartDefToYaml = function () {
@@ -490,7 +490,7 @@ var intransitionToYaml = function (link) {
     let result = {};
     let event = link[0];
     let guard = link[1];
-    let action = link[2].split(";");
+    let action = link[2].split("\n").join(";").split(";");
     action = removeAllBES(action);
     action = action.join("\n");
     if (event != "") {
@@ -500,7 +500,7 @@ var intransitionToYaml = function (link) {
         result['guard'] = guard;
     }
     if (action != "") {
-        if (action.split('\n').length > 1) {
+        if (action.split('\n').length > 1 && action.charAt(action.length-1)!=="\n") {
             action = action + "\n";
         }
         result['action'] = action;
